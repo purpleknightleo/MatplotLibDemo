@@ -5,7 +5,7 @@ from matplotlib.font_manager import FontProperties
 fontset = FontProperties(fname='/System/Library/Fonts/PingFang.ttc')
 
 year = [1, 2, 3, 4, 5, 6]
-num = [92, 34, 98, 72, 109, 111]
+num = [920, 3400, 9800, 7022, 1009, 11911]
 
 
 # 点状图
@@ -20,6 +20,7 @@ def scatter_plot():
 # 线图
 def line_plot():
     plt.plot(year, num)
+    plt.grid(True)  # 网格
     plt.show()
 
 
@@ -29,7 +30,16 @@ def histogram_plot():
     plt.show()
 
 
+def tick_plot():
+    plt.scatter(year, num)
+    tick_val = [1000, 10000, 100000]
+    tick_lab = ['1k', '10k', '100k']
+    plt.yticks(tick_val, tick_lab)
+    plt.show()
+
+
 if __name__ == '__main__':
     # scatter_plot()
-    # line_plot()
-    histogram_plot()
+    line_plot()
+    # histogram_plot()
+    # tick_plot()
