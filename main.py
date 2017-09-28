@@ -6,7 +6,7 @@ fontset = FontProperties(fname='/System/Library/Fonts/PingFang.ttc')
 
 year = [1998, 1999, 2001, 2004, 2005, 2008]
 num1 = [920, 3400, 9800, 7022, 1009, 11911]
-num2 = [673, 8711, 5400, 8000, 2678, 7777]
+num2 = [773, 8711, 5400, 8000, 2678, 7777]
 num3 = [873, 6666, 4444, 5555, 1111, 17001]
 num4 = [1000, 4321, 7888, 6969, 3209, 8888]
 
@@ -35,8 +35,10 @@ def line_plot_in_one():
     # 透明度
     plt.plot(year, num2, label='US', linestyle='-', color='b', marker='v', linewidth=4, alpha=0.4)
 
-    # x轴的刻度区间
-    plt.xlim(1995, 2010)
+    # plt.xlim(1995, 2010)  # x轴的刻度区间
+    # plt.ylim(800, 12000)  # y轴的刻度区间
+    plt.axis((1995, 2010, 800, 12000))  # 与上面两句话等价
+
     plt.grid(True)  # 网格
     plt.show()
     plt.close()
