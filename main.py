@@ -1,14 +1,16 @@
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
+import numpy as np
 
-# 指定中文字体
+# 指定中文字体，否则label会乱码
 fontset = FontProperties(fname='/System/Library/Fonts/PingFang.ttc')
 
-year = [1998, 1999, 2001, 2004, 2005, 2008]
-num1 = [920, 3400, 9800, 7022, 1009, 11911]
-num2 = [773, 8711, 5400, 8000, 2678, 7777]
-num3 = [873, 6666, 4444, 5555, 1111, 17001]
-num4 = [1000, 4321, 7888, 6969, 3209, 8888]
+# 统一转换成numpy.array方便后续操作
+year = np.array([1998, 1999, 2001, 2004, 2005, 2008])
+num1 = np.array([920, 3400, 9800, 7022, 1009, 11911])
+num2 = np.array([773, 8711, 5400, 8000, 2678, 7777])
+num3 = np.array([873, 6666, 4444, 5555, 1111, 17001])
+num4 = np.array([1000, 4321, 7888, 6969, 3209, 8888])
 
 
 # 点状图
@@ -18,7 +20,7 @@ def scatter_plot(save):
     plt.xlabel('年份', fontproperties=fontset)  # X轴名称
     plt.ylabel('数量', fontproperties=fontset)  # Y轴名称
     # 通过箭头进行内容标注，xy为被标注的位置，xytext为标注文字的位置点
-    plt.annotate('local max', xy=(2008, 11911), xytext=(2005, 10000),
+    plt.annotate('local max', xy=(year[num1.argmax()], num1.max()), xytext=(2005, 10000),
                  arrowprops=dict(facecolor='black', shrink=0.05), )
     fig = plt.gcf()  # 获取当前图表，不然plt.show()就会生成新的图表导致savefig()时一片空白
     plt.show()
@@ -30,6 +32,9 @@ def scatter_plot(save):
 
 # 线图（两条线在同一张图中）
 def line_plot_in_one():
+    # 指定画布风格
+    plt.style.use('ggplot')  # 所有支持的风格将plt.style.available
+
     # 线条标签、线型、颜色、符号、粗细
     plt.plot(year, num1, label='CH', linestyle='--', color='lightpink', marker='x', linewidth=2)
     # 透明度
@@ -39,6 +44,7 @@ def line_plot_in_one():
     # plt.ylim(800, 12000)  # y轴的刻度区间
     plt.axis((1995, 2010, 800, 12000))  # 与上面两句话等价
 
+    plt.legend(loc='upper left')  # 两条线的label放置位置
     plt.grid(True)  # 网格
     plt.show()
     plt.close()
@@ -118,8 +124,8 @@ def tick_plot():
 
 
 if __name__ == '__main__':
-    scatter_plot(True)
-    # line_plot_in_one()
+    # scatter_plot(False)
+    line_plot_in_one()
     # line_plot_in_two()
     # line_plot_with_subplot_symmetric()
     # line_plot_with_subplot_asymmetric()
