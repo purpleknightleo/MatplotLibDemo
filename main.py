@@ -108,7 +108,20 @@ def line_plot_with_subplot_asymmetric():
 
 # 直方图
 def histogram_plot():
-    plt.hist(num1, bins=20)
+    mu = 100  # mean of distribution
+    sigma = 15  # standard deviation of distribution
+    x = mu + sigma * np.random.randn(10000)
+
+    plt.hist(x, bins=20, normed=1)
+    plt.show()
+    plt.close()
+
+
+# 条形图
+def bar_plot():
+    width = 0.3
+    plt.bar(year, num1, width=width, color='r')
+    plt.bar(year + width, num2, width=width, color='b')
     plt.show()
     plt.close()
 
@@ -125,9 +138,10 @@ def tick_plot():
 
 if __name__ == '__main__':
     # scatter_plot(False)
-    line_plot_in_one()
+    # line_plot_in_one()
     # line_plot_in_two()
     # line_plot_with_subplot_symmetric()
     # line_plot_with_subplot_asymmetric()
     # histogram_plot()
+    bar_plot()
     # tick_plot()
